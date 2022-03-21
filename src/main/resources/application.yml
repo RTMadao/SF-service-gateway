@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: gateway-service
+#Routes
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
+server:
+  port: 3000
+
+#Registry Service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3001/eureka/
