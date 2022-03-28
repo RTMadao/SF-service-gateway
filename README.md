@@ -1,2 +1,2 @@
-# SF-service-getway
+# SF-service-gateway
 Gateway service for system SF
