@@ -23,7 +23,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
             if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders. AUTHORIZATION)) {
                 throw new RuntimeException("Missing auth information");
             }
-            String authHeader = exchange.getRequest ().getHeaders ().get(HttpHeaders. AUTHORIZATION).get(0);
+            String authHeader = exchange.getRequest().getHeaders ().get(HttpHeaders. AUTHORIZATION).get(0);
 
             String[] parts = authHeader.split(" ");
 
