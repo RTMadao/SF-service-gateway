@@ -1,7 +1,7 @@
 spring:
   application:
     name: gateway-service
-#Routes
+  #Routes
   cloud:
     gateway:
       discovery:
@@ -18,8 +18,12 @@ spring:
           uri: lb://auth-service
           predicates:
               - Path=/auth/**
+        - id: email-service
+          uri: lb://email-service
+          predicates:
+            - Path=/email/**
 server:
-  port: 3000
+  port: 3010
 
 #Registry Service
 eureka:

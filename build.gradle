@@ -4,8 +4,16 @@ plugins {
 	id 'java'
 }
 
+jar {
+	manifest {
+		attributes(
+				'Main-Class': 'com.salcedoFawccet.services.gateway.GatewayApplication'
+		)
+	}
+}
+
 group = 'com.salcedoFawccet.services'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
