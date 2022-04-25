@@ -23,8 +23,10 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
     @Override
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
+            if (new URLsNoAuthNeeded().validateURL(exchange.getRequest().getURI().getPath())) return chain.filter(exchange);
             if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                throw new RuntimeException("Missing auth information");
+                //throw new RuntimeException("Missing auth information");
+                return this.onError(exchange,"api-key missing",HttpStatus.FORBIDDEN);
             }
             String authHeader = exchange.getRequest().getHeaders ().get(HttpHeaders.AUTHORIZATION).get(0);
 

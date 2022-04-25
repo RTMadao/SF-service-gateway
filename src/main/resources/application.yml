@@ -22,6 +22,20 @@ spring:
           uri: lb://email-service
           predicates:
             - Path=/email/**
+          filters:
+            - AuthFilter
+        - id: parameter-service
+          uri: lb://parameter-service
+          predicates:
+            - Path=/parameter/**
+          filters:
+            - AuthFilter
+        - id: client-service
+          uri: lb://client-service
+          predicates:
+            - Path=/customer/**
+          filters:
+            - AuthFilter
 server:
   port: 3010
 
