@@ -7,6 +7,16 @@ spring:
       discovery:
         locator:
           enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:8080"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
       routes:
         - id: user-service
           uri: lb://user-service
@@ -43,4 +53,4 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:3001/eureka/
+      defaultZone: http://198.211.113.192:3001/eureka/
