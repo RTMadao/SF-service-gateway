@@ -1,6 +1,6 @@
 FROM openjdk:11-jre-slim
 
-COPY build/libs/gateway-0.1.0-SNAPSHOT.jar home/spring/salcedo_fawcett/gateway_service.jar
+COPY build/libs/gateway-0.5.0-SNAPSHOT.jar home/spring/salcedo_fawcett/gateway_service.jar
 EXPOSE 3010
 
 # Add docker-compose-wait tool -------------------

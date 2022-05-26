@@ -10,7 +10,7 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "http://localhost:8080"
+            allowedOrigins: "*"
             allowedHeaders: "*"
             allowedMethods:
               - GET
@@ -46,6 +46,18 @@ spring:
             - Path=/customer/**
           filters:
             - AuthFilter
+        - id: provider-service
+            uri: lb://provider-service
+            predicates:
+              - Path=/provider/**
+            filters:
+              - AuthFilter
+        - id: cotizaciones-service
+            uri: lb://cotizaciones-service
+            predicates:
+              - Path=/economical_proposal/**
+            filters:
+              - AuthFilter
 server:
   port: 3010
 
