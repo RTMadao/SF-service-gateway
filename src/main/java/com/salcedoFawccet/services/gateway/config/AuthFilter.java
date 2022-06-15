@@ -1,5 +1,7 @@
 package com.salcedoFawccet.services.gateway.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -15,6 +17,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
 
     @Autowired
     private WebClient.Builder webClient;
+    Logger logger = LoggerFactory.getLogger(AuthFilter.class);
 
     public AuthFilter() {
         super(Config.class);
@@ -23,6 +26,9 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
     @Override
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
+
+            logger.info(exchange.getRequest().getMethodValue()+" "+ exchange.getRequest().getPath());
+
             if (new URLsNoAuthNeeded().validateURL(exchange.getRequest().getURI().getPath())) return chain.filter(exchange);
             if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
                 //throw new RuntimeException("Missing auth information");
